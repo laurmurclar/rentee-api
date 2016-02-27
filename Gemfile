@@ -7,6 +7,8 @@ gem 'rails-api'
 
 gem 'spring', :group => :development
 
+gem 'devise_token_auth'
+gem 'omniauth' # To fix error. Should remove when issue fixed
 
 gem 'sqlite3'
 
