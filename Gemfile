@@ -7,10 +7,7 @@ gem 'rails-api'
 
 gem 'spring', :group => :development
 
-# User authentication
 gem 'devise'
-# Allows devise to be used in api setup
-gem 'tiddle'
 
 gem 'sqlite3'
 
