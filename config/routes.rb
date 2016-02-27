@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'Tenant', at: 'auth', skip: [:omniauth_callbacks]
+  mount_devise_token_auth_for 'Tenant', at: 't_auth', skip: [:omniauth_callbacks]
+
+  mount_devise_token_auth_for 'Landlord', at: 'l_auth', skip: [:omniauth_callbacks]
+  as :landlord do
+    # Define routes for Landlord within this block.
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

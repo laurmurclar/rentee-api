@@ -11,7 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227151411) do
+ActiveRecord::Schema.define(version: 20160227152541) do
+
+  create_table "landlords", force: :cascade do |t|
+    t.string   "provider",                            null: false
+    t.string   "uid",                    default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "f_name"
+    t.string   "l_name"
+    t.string   "email"
+    t.text     "tokens"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "landlords", ["email"], name: "index_landlords_on_email"
+  add_index "landlords", ["reset_password_token"], name: "index_landlords_on_reset_password_token", unique: true
+  add_index "landlords", ["uid", "provider"], name: "index_landlords_on_uid_and_provider", unique: true
 
   create_table "tenants", force: :cascade do |t|
     t.string   "provider",                            null: false
