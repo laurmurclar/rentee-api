@@ -1,7 +1,0 @@
-༼ つ ◕_◕ ༽つ TODO
-----------------
-- Set up devise
-  - Set up "user"
-    - Set up tenant
-    - Set up landlord
-    - Set up admin
