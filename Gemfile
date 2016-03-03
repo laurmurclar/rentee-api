@@ -6,7 +6,9 @@ gem 'rails', '4.2.5'
 gem 'rails-api'
 
 gem 'devise_token_auth'
-gem 'omniauth' # To fix error. Should remove when issue fixed
+gem 'omniauth' # To fix error with above gem. Should remove when issue fixed
+
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
