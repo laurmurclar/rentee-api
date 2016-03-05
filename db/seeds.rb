@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+properties = Property.create([
+  {
+    landlord_id: 1,
+    street: 'Apt 4, Oak Avenue',
+    town: 'Baloo',
+    county: 'Louth',
+    rent: 500,
+    n_baths: 2,
+    rent_allowance: true,
+    ptrb: true
+  }
+])

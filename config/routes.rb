@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   as :landlord do
     # Define routes for Landlord within this block.
   end
+
+  resources :property
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
