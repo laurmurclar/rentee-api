@@ -1,5 +1,7 @@
 class Property < ActiveRecord::Base
   belongs_to :landlord
+  has_many :amenities
+  has_many :beds
 
   validates :landlord_id, presence: true
   validates :street, presence: true, length: { minimum: 4, maximum: 200 }
