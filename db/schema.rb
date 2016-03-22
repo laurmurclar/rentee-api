@@ -11,21 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314205255) do
+ActiveRecord::Schema.define(version: 20160322141704) do
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
     t.integer  "property_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "beds", force: :cascade do |t|
-    t.integer  "property_id"
-    t.boolean  "available"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "bed_type"
   end
 
   create_table "landlords", force: :cascade do |t|
@@ -67,6 +59,8 @@ ActiveRecord::Schema.define(version: 20160314205255) do
     t.boolean  "ptrb",           default: false
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "n_beds"
+    t.integer  "avail_beds"
   end
 
   add_index "properties", ["landlord_id"], name: "index_properties_on_landlord_id"
