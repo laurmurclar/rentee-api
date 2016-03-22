@@ -8,5 +8,7 @@ class Property < ActiveRecord::Base
   validates :county, presence: true, length: { minimum: 4, maximum: 10 }
   validates :rent, numericality: { greater_than: 0 }
   validates :n_baths, numericality: { greater_than_or_equal_to: 0 }
+  validates :n_beds, numericality: { greater_than_or_equal_to: 0 }
+  validates :avail_beds, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: :n_beds}
 
 end
