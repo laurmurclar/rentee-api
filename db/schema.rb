@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322141704) do
+ActiveRecord::Schema.define(version: 20160323125831) do
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20160322141704) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "approvals", force: :cascade do |t|
+    t.integer  "tenant_id"
+    t.integer  "property_id"
+    t.boolean  "approved"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "approvals", ["property_id"], name: "index_approvals_on_property_id"
+  add_index "approvals", ["tenant_id"], name: "index_approvals_on_tenant_id"
 
   create_table "landlords", force: :cascade do |t|
     t.string   "provider",                            null: false
