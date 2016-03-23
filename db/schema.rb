@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323125831) do
+ActiveRecord::Schema.define(version: 20160323142110) do
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 20160323125831) do
   add_index "landlords", ["email"], name: "index_landlords_on_email"
   add_index "landlords", ["reset_password_token"], name: "index_landlords_on_reset_password_token", unique: true
   add_index "landlords", ["uid", "provider"], name: "index_landlords_on_uid_and_provider", unique: true
+
+  create_table "matches", force: :cascade do |t|
+    t.integer  "tenant_id"
+    t.integer  "property_id"
+    t.boolean  "matched"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "matches", ["property_id"], name: "index_matches_on_property_id"
+  add_index "matches", ["tenant_id"], name: "index_matches_on_tenant_id"
 
   create_table "properties", force: :cascade do |t|
     t.integer  "landlord_id"

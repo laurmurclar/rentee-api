@@ -4,10 +4,22 @@ class ApprovalController < ActionController::API
     @approval = Approval.new(approval_params)
 
     if @approval.save
-      render json: {
-        status: 'success',
-        data:  @approval.as_json
-      }
+      if @approval.approved
+        #auto-match
+        @match = Match.new(tenant_id: params[:tenant_id], property_id:
+                              params[:property_id], matched: true)
+        if @match.save # both saved
+          render json: {
+            status: 'success',
+            data:  @approval.as_json
+          }
+        else # approval saved, but match didn't, so return match errors
+          render json: {
+            status: 'success',
+            data:  @match.errors.to_hash.merge(full_messages: @match.errors.full_messages)
+          }
+        end
+      end
     else
       render json: {
         status: 'error',
