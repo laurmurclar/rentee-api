@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     # Define routes for Landlord within this block.
   end
 
-  resources :property
+  post '/property', to: 'property#create'
 
   post '/approval', to: 'approval#create'
-  
+
 end
