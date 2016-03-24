@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post '/property', to: 'property#create'
 
   post '/approval', to: 'approval#create'
-
+  
+  get '/landlord/:id', to: 'landlord#show'
 end
