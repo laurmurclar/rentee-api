@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   post '/approval', to: 'approval#create'
   
   get '/landlord/:id', to: 'landlord#show'
+
+  get '/property', to: 'property#search'
 end

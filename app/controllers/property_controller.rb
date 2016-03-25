@@ -21,10 +21,20 @@ class PropertyController < ActionController::API
     end
   end
 
+  def search
+    @properties = Property.find_by(search_params)
+
+    render json: @properties
+  end
+
 private
   def property_params
     params.permit(:landlord_id, :street, :town, :county, :rent,
                           :n_baths, :rent_allowance, :ptrb, :n_beds, :avail_beds)
+  end
+
+  def search_params
+    params.permit(:town, :county)
   end
 
 end
