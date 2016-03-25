@@ -1,6 +1,6 @@
 class Match < ActiveRecord::Base
-  belongs_to :tenant
-  belongs_to :property
+  belongs_to :tenant, dependent: :destroy
+  belongs_to :property, dependent: :destroy
 
-  validates :tenant_id, uniqueness: {scope: :property_id}
+  validates :tenant_id, uniqueness: { scope: :property_id }
 end
