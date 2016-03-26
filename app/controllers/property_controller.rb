@@ -22,7 +22,9 @@ class PropertyController < ActionController::API
   end
 
   def search
-    @properties = Property.find_by(search_params)
+    search_params
+    @properties = Property.where(town: params[:town], county: params[:county], ptrb: params[:ptrb], rent_allowance: params[:rent_allowance] 
+                                  )
 
     render json: @properties
   end
@@ -34,7 +36,13 @@ private
   end
 
   def search_params
-    params.permit(:town, :county)
+    params.permit(:town, :county, :rent_allowance, :ptrb)
+    params[:ptrb] = str_to_bool(params[:ptrb])
+    params[:rent_allowance] = str_to_bool(params[:rent_allowance])
+  end
+
+  def str_to_bool(str) 
+    return str == 'true'
   end
 
 end
