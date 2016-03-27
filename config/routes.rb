@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   get '/matches', to: 'match#index'
 
+
+  get '/property', to: 'property#search'
 end
