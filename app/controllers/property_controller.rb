@@ -23,8 +23,8 @@ class PropertyController < ActionController::API
 
   def search
     search_params
-    @properties = Property.where(town: params[:town], county: params[:county], ptrb: params[:ptrb], rent_allowance: params[:rent_allowance] 
-                                  )
+    @properties = Property.where("town = ? AND county = ? AND rent_allowance = ? AND ptrb = ? AND rent <= ? AND avail_beds >= ? AND n_baths >= ?",
+                                  params[:town], params[:county], params[:rent_allowance], params[:ptrb], params[:rent], params[:n_beds], params[:n_baths])
 
     render json: @properties
   end
