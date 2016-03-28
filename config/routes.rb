@@ -9,10 +9,9 @@ Rails.application.routes.draw do
 
   post '/property', to: 'property#create'
 
+  get '/property', to: 'property#search'
+
   post '/approval', to: 'approval#create'
 
   get '/matches', to: 'match#index'
-
-
-  get '/property', to: 'property#search'
 end
