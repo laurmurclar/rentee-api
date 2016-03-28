@@ -23,10 +23,11 @@ class PropertyController < ActionController::API
 
   def search
     search_params
-    @property = Property.where("town = ? AND county = ? AND rent_allowance = ? AND ptrb = ? AND rent <= ? AND avail_beds >= ? AND n_baths >= ?",
-                                  params[:town], params[:county], params[:rent_allowance], params[:ptrb], params[:rent], params[:n_beds], params[:n_baths]).joins(:approvals).where(
+    @properties = Property.where("town = ? AND county = ? AND rent_allowance = ? AND ptrb = ? AND rent <= ? AND avail_beds >= ? AND n_baths >= ?",
+                                  params[:town], params[:county], params[:rent_allowance], params[:ptrb], params[:rent], params[:n_beds], params[:n_baths]).joins(
+                                  "LEFT JOIN approvals ON properties.id = approvals.property_id").where(
                                   "approvals.tenant_id != ?", params[:t_id]).take
-    render json: @property                              
+    render json: @properties                              
   end
 
 private
