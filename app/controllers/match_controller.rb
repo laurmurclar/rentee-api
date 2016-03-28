@@ -4,7 +4,7 @@ class MatchController < ActionController::API
   def index
     matches = Property.joins(:matches)
         .where(matches: { tenant_id: params[:tenant_id], matched: true })
-        .select(:id, :street, :town, :county)
+        .select(:id, :landlord_id, :street, :town, :county)
     render json: matches
   end
 
