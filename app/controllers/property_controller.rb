@@ -35,9 +35,4 @@ private
     params.permit(:landlord_id, :street, :town, :county, :rent,
                           :n_baths, :rent_allowance, :ptrb, :n_beds, :avail_beds)
   end
-
-  def str_to_bool(str)
-    return str == 'true'
-  end
-
 end
