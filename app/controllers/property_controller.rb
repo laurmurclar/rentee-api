@@ -22,12 +22,12 @@ class PropertyController < ActionController::API
   end
 
   def search
-    search_params
-    @properties = Property.where("town = ? AND county = ? AND rent_allowance = ? AND ptrb = ? AND rent <= ? AND avail_beds >= ? AND n_baths >= ?",
-                                  params[:town], params[:county], params[:rent_allowance], params[:ptrb], params[:rent], params[:n_beds], params[:n_baths]).joins(
-                                  "LEFT JOIN approvals ON properties.id = approvals.property_id").where(
-                                  "approvals.tenant_id != ?", params[:t_id]).take
-    render json: @properties                              
+    join_query = "LEFT JOIN approvals ON properties.id = approvals.property_id"
+    properties = Property.joins(join_query).where("tenant_id != ? OR tenant_id is ?", params[:t_id], nil)
+    properties = properties.where("town = ? AND county = ? AND rent_allowance = ? AND ptrb = ? AND rent <= ? AND avail_beds >= ? AND n_baths >= ?",
+                                   params[:town], params[:county], params[:rent_allowance], params[:ptrb], params[:rent], params[:n_beds], params[:n_baths])
+                              .take
+    render json: properties
   end
 
 private
@@ -36,13 +36,7 @@ private
                           :n_baths, :rent_allowance, :ptrb, :n_beds, :avail_beds)
   end
 
-  def search_params
-    params.permit(:town, :county, :rent_allowance, :ptrb, :rent, :n_beds, :n_baths, :t_id)
-    params[:ptrb] = str_to_bool(params[:ptrb])
-    params[:rent_allowance] = str_to_bool(params[:rent_allowance])
-  end
-
-  def str_to_bool(str) 
+  def str_to_bool(str)
     return str == 'true'
   end
 
