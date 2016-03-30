@@ -1,4 +1,4 @@
-class MatchController < ActionController::API
+class MatchController < ApplicationController
 
   # returns the id and address of properties that a tenant (given by id in params) has matched with
   def index

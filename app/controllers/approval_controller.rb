@@ -1,4 +1,4 @@
-class ApprovalController < ActionController::API
+class ApprovalController < ApplicationController
 
   def create
     @approval = Approval.new(approval_params)
