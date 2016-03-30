@@ -1,4 +1,5 @@
 class PropertyController < ApplicationController
+  before_action :authenticate_tenant!, only: [:search, :show]
 
   def show
     @property = Property.find_by_id params[:id]
@@ -23,11 +24,11 @@ class PropertyController < ApplicationController
 
   def search
     join_query = "LEFT JOIN approvals ON properties.id = approvals.property_id"
-    properties = Property.joins(join_query).where("tenant_id != ? OR tenant_id is ?", params[:t_id], nil)
-    properties = properties.where("town = ? AND county = ? AND rent_allowance = ? AND ptrb = ? AND rent <= ? AND avail_beds >= ? AND n_baths >= ?",
+    property = Property.joins(join_query).where("tenant_id != ? OR tenant_id is ?", params[:t_id], nil)
+    property = property.where("town = ? AND county = ? AND rent_allowance = ? AND ptrb = ? AND rent <= ? AND avail_beds >= ? AND n_baths >= ?",
                                    params[:town], params[:county], params[:rent_allowance], params[:ptrb], params[:rent], params[:n_beds], params[:n_baths])
                               .take
-    render json: properties
+    render json: property
   end
 
 private
