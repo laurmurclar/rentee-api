@@ -1,5 +1,5 @@
 class PropertyController < ApplicationController
-  before_action :authenticate_tenant!, only: [:search, :show]
+  before_action :authenticate_tenant!, only: [:search]
 
   def show
     @property = Property.find_by_id params[:id]
