@@ -2,6 +2,7 @@ class Property < ActiveRecord::Base
   belongs_to :landlord
   has_many :amenities
   has_many :approvals
+  has_many :tenants, :through => :approvals
   has_many :matches
 
   validates :landlord_id, presence: true

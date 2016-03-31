@@ -7,6 +7,7 @@ class Tenant < ActiveRecord::Base
 
   has_many :approvals
   has_many :matches
+  has_many :properties, :through => :approvals
 
   validates :f_name, presence: true
   validates :l_name, presence: true
