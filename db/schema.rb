@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330132445) do
+ActiveRecord::Schema.define(version: 20160331152716) do
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160330132445) do
   end
 
   add_index "approvals", ["property_id"], name: "index_approvals_on_property_id"
+  add_index "approvals", ["tenant_id", "property_id"], name: "index_approvals_on_tenant_id_and_property_id", unique: true
   add_index "approvals", ["tenant_id"], name: "index_approvals_on_tenant_id"
 
   create_table "landlords", force: :cascade do |t|
