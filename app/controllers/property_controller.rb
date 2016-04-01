@@ -1,5 +1,5 @@
 class PropertyController < ApplicationController
-  before_action :authenticate_tenant!, only: [:search]
+  # before_action :authenticate_tenant!, only: [:search]
 
   def show
     @property = Property.find_by_id params[:id]
@@ -24,7 +24,10 @@ class PropertyController < ApplicationController
 
   def search
     @tenant = Tenant.find_by_id params[:t_id]
-    property = Property.where.not(id: @tenant.property_ids).take
+    property = Property.where.not(id: @tenant.property_ids)
+    property = property.where("town = ? AND county = ? AND rent_allowance = ? AND ptrb = ? AND rent <= ? AND avail_beds >= ? AND n_baths >= ?",
+                                   params[:town], params[:county], params[:rent_allowance], params[:ptrb], params[:rent], params[:n_beds], params[:n_baths])
+                       .take
     render json: property
   end
 
