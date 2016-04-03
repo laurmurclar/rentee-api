@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331152716) do
+ActiveRecord::Schema.define(version: 20160403102312) do
 
   create_table "amenities", force: :cascade do |t|
     t.string   "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160331152716) do
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ph_no"
   end
 
   add_index "landlords", ["email"], name: "index_landlords_on_email"
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160331152716) do
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ph_no"
   end
 
   add_index "tenants", ["email"], name: "index_tenants_on_email"

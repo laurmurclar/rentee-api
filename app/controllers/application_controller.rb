@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
 
   devise_token_auth_group :user, contains: [:tenant, :landlord]
-  
+
   def root
     render json: { api: "v1" }
   end
@@ -12,5 +12,6 @@ class ApplicationController < ActionController::API
     def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) << :f_name
       devise_parameter_sanitizer.for(:sign_up) << :l_name
+      devise_parameter_sanitizer.for(:sign_up) << :ph_no
     end
 end
