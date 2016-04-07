@@ -1,4 +1,5 @@
 class ApprovalController < ApplicationController
+  before_action :authenticate_tenant!
 
   def create
     @approval = Approval.new(approval_params)

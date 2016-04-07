@@ -1,5 +1,6 @@
 class MatchController < ApplicationController
-
+  before_action :authenticate_tenant!
+  
   # returns the id and address of properties that a tenant (given by id in params) has matched with
   def index
     matches = Property.joins(:matches)
